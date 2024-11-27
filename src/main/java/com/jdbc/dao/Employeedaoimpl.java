@@ -54,14 +54,17 @@ public class  Employeedaoimpl implements Employeedao {
 
 	@Override
 	public void getEmpById(int id) {
-		try(Statement stmt = con.createStatement()){
+      try(Statement stmt = con.createStatement()){
 			
-			stmt.executeUpdate("select city from employee where id="+id);
-			System.out.println("Getting successfully");
+			ResultSet rs = stmt.executeQuery("select * from employee where id=" +id);
 			
+			while(rs.next()) {
+				System.out.println("id="+rs.getInt(1)+ " " +"name="+rs.getString(2)+  " " + "age=" +rs.getInt(3)+  " " +"city="+rs.getString(4) + " " );
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 		
 	}
 
